@@ -1,0 +1,159 @@
+:root {  
+  --primary-color: #31c27c; /* 定义主要颜色变量 */  
+}  
+
+body {  
+  margin: 0; /* 去掉默认边距 */  
+  background: #f5f5f5; /* 设置背景颜色 */  
+  font-family: Microsoft Yahei; /* 设置字体 */  
+  font-size: 14px; /* 设置基础字体大小 */  
+  /* min-width: 1000px; */ /* 可选：设置最小宽度 */  
+}  
+
+a {  
+  text-decoration: none; /* 去掉链接底线 */  
+  color: #000; /* 链接颜色设置为黑色 */  
+}  
+
+header {  
+  height: 90px; /* 设定头部高度 */  
+  background: white; /* 头部背景颜色 */  
+  display: flex; /* 使用弹性盒布局 */  
+  align-items: center; /* 垂直居中对齐 */  
+}  
+
+.header-inner, main {  
+  /* width: 1200px; */ /* 可选：设置宽度 */  
+  padding: 20px; /* 设置内边距 */  
+  margin: auto; /* 居中对齐 */  
+}  
+
+.tag-list {  
+  margin-top: 50px; /* 设置上边距 */  
+  margin-bottom: 15px; /* 设置下边距 */  
+}  
+
+.tag-item {  
+  display: inline-block; /* 元素以行内块显示 */  
+  padding: 0 8px; /* 左右内边距 */  
+  margin-right: 24px; /* 右边距 */  
+  line-height: 26px; /* 行高 */  
+  color: #000; /* 默认颜色为黑色 */  
+  text-decoration: none; /* 去掉文本装饰 */  
+}  
+
+.tag-active {  
+  background: var(--primary-color); /* 活动标签背景色 */  
+  color: white; /* 活动标签文字颜色 */  
+}  
+
+.tag-item:not(.tag-active):hover {  
+  color: var(--primary-color); /* 非活动标签悬停时的颜色 */  
+}  
+
+.nowrap {  
+  white-space: nowrap; /* 不换行 */  
+  overflow: hidden; /* 超出内容隐藏 */  
+  text-overflow: ellipsis; /* 溢出文本显示省略号 */  
+}  
+
+.playlist {  
+  display: grid; /* 使用网格布局 */  
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 自适应列布局 */  
+  gap: 45px 15px; /* 网格间距 */  
+  margin-bottom: 45px; /* 下边距 */  
+}  
+
+.cover-wrap {  
+  display: flex; /* 使用弹性盒布局 */  
+  position: relative; /* 相对定位以便定位子元素 */  
+  overflow: hidden; /* 隐藏溢出内容 */  
+  width: 100%; /* 宽度占满父元素 */  
+  margin-bottom: 15px; /* 下边距 */  
+  align-items: center; /* 垂直居中对齐 */  
+  justify-content: center; /* 水平居中对齐 */  
+  cursor: pointer; /* 鼠标悬停时显示为指针 */  
+}  
+
+.cover-img {  
+  width: 100%; /* 图片宽度占满父元素 */  
+  transition: all 0.75s; /* 过渡效果 */  
+}  
+
+.cover-mask {  
+  position: absolute; /* 绝对定位 */  
+  left: 0; /* 左侧位置 */  
+  top: 0; /* 顶部位置 */  
+  right: 0; /* 右侧位置 */  
+  bottom: 0; /* 底部位置 */  
+  background: #000; /* 背景颜色 */  
+  opacity: 0; /* 初始透明度 */  
+  transition: all 0.5s; /* 过渡效果 */  
+}  
+
+.cover-play {  
+  position: absolute; /* 绝对定位 */  
+  left: 50%; /* 居中定位 */  
+  top: 50%; /* 居中定位 */  
+  margin-left: -35px; /* 左偏移以中心对齐 */  
+  margin-top: -35px; /* 上偏移以中心对齐 */  
+  opacity: 0; /* 初始透明度 */  
+  transform: scale(0.7); /* 初始缩放 */  
+  transition: all 0.5s; /* 过渡效果 */  
+}  
+
+.cover-wrap:hover .cover-mask {  
+  opacity: 0.2; /* 悬停时显示遮罩 */  
+}  
+
+.cover-wrap:hover .cover-play {  
+  opacity: 1; /* 悬停时显示播放图标 */  
+  transform: scale(1); /* 悬停时还原缩放 */  
+}  
+
+.cover-wrap:hover .cover-img {  
+  transform: scale(1.07); /* 悬停时放大图片 */  
+}  
+
+.album-title:hover {  
+  color: var(--primary-color); /* 专辑标题悬停时的颜色 */  
+}  
+
+.album-author {  
+  color: #999; /* 专辑作者颜色 */  
+  line-height: 1.6; /* 行高 */  
+}  
+
+.album-author:hover {  
+  color: var(--primary-color); /* 作者名称悬停时的颜色 */  
+}  
+
+.album-time {  
+  color: #999; /* 专辑时间颜色 */  
+}  
+
+.page {  
+  display: flex; /* 使用弹性盒布局 */  
+  align-items: center; /* 垂直居中对齐 */  
+  justify-content: center; /* 水平居中对齐 */  
+}  
+
+.page-item {  
+  display: inline-block; /* 元素以行内块显示 */  
+  color: #a2a2a2; /* 默认颜色 */  
+  line-height: 50px; /* 行高 */  
+  padding: 0 20px; /* 左右内边距 */  
+  margin: 10px; /* 边距 */  
+  font-size: 16px; /* 字体大小 */  
+}  
+
+.page-current, .page-item:not(.page-more):hover {  
+  background: var(--primary-color); /* 当前页和非"更多"页悬停时的背景色 */  
+  color: white; /* 当前页和悬停页的文字颜色 */  
+}  
+
+footer {  
+  margin-top: 60px; /* 上边距 */  
+  background: #333; /* 底部背景颜色 */  
+  height: 200px; /* 高度设置 */  
+}

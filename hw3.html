@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Countdown to NCEE</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      /* 从Google Fonts导入Poppins字体 */
+      @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
+      * {
+        margin: 0; /* 清除默认的外边距 */
+        padding: 0; /* 清除默认的内边距 */
+        font-family: "Poppins", sans-serif; /* 应用Poppins字体 */
+      }
+
+      body {
+        background: #f4f1f1 url(bg.jpg); /* 背景颜色和图像 */
+        background-attachment: fixed; /* 滚动时固定背景 */
+        background-blend-mode: hard-light; /* 背景混合模式 */
+      }
+
+      .container {
+        position: absolute; /* 相对于主体绝对定位 */
+        top: 80px; /* 距离视口顶部的距离 */
+        left: 100px; /* 距离视口左侧的距离 */
+        right: 100px; /* 距离视口右侧的距离 */
+        bottom: 80px; /* 距离视口底部的距离 */
+        background: url(bg.jpg); /* 背景图像 */
+        background-attachment: fixed; /* 此容器的背景固定 */
+        display: flex; /* 使用Flexbox布局 */
+        justify-content: center; /* 水平居中内容 */
+        align-items: center; /* 垂直居中内容 */
+        flex-direction: column; /* 元素在列中堆叠 */
+        box-shadow: 0 50px 50px rgba(0, 0, 0, 0.5),
+          /* 阴影效果 */ 0 0 0 100px rgba(0, 0, 0, 0.1); /* 半透明覆盖层 */
+      }
+
+      .container h2 {
+        text-align: center;
+        font-size: 10em; 
+        line-height: 0.7em; /* 文本行间距 */
+        color: #333; 
+        margin-top: -80px; /* 向上调整的负外边距 */
+      }
+
+      /* 标题中的副标题样式 */
+      .container h2 span {
+        display: block; /* 将副标题以块元素显示 */
+        font-weight: 300; /* 轻字体重量 */
+        letter-spacing: 6px; /* 字母之间的间距 */
+        font-size: 0.2em; /* 较小的字体大小 */
+      }
+
+      /* 倒计时容器 */
+      .countdown {
+        display: flex; /* 使用Flexbox布局 */
+        margin-top: 50px; /* 倒计时上方的间距 */
+      }
+
+      /* 每个倒计时项的样式 */
+      .countdown div {
+        position: relative; /* 为子元素定位 */
+        width: 100px; 
+        height: 100px; 
+        line-height: 100px; /* 垂直居中文本 */
+        text-align: center; 
+        background: #333; /* 倒计时块的深色背景 */
+        color: #fff; /* 对比的白色文本 */
+        margin: 0 15px; /* 倒计时项之间的水平间距 */
+        font-size: 3em; /* 数字的大字体大小 */
+        font-weight: 500; /* 中等字体重量 */
+      }
+
+      /* 每个倒计时数字下方标签的样式 */
+      .countdown div:before {
+        content: ""; /* 标签的空内容 */
+        position: absolute; /* 标签绝对定位 */
+        bottom: -30px; /* 标签在倒计时数字下方 */
+        left: 0; /* 对齐到左侧 */
+        width: 100%; 
+        height: 35px; 
+        background: #ff0; 
+        color: #333; 
+        font-size: 0.35em; /* 标签较小的字体大小 */
+        line-height: 35px; /* 垂直居中标签文本 */
+        font-weight: 300; /* 标签轻字体重量 */
+      }
+
+      /* 每个倒计时元素特定的标签 */
+      .container #day:before {
+        content: "天"; /* 设置天数的标签 */
+      }
+      .container #hour:before {
+        content: "小时"; /* 设置小时的标签 */
+      }
+      .container #minute:before {
+        content: "分钟"; /* 设置分钟的标签 */
+      }
+      .container #second:before {
+        content: "秒"; /* 设置秒的标签 */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2><span>Countdown to NCEE</span> 2025</h2>
+      <div class="countdown">
+        <div id="day">NA</div>
+        <div id="hour">NA</div>
+        <div id="minute">NA</div>
+        <div id="second">NA</div>
+      </div>
+    </div>
+
+    <script>
+      // 函数获取倒计时的结束时间
+      function getEndTime(myYear) {
+        var myEndTime = new Date("" + myYear + "/06/07 00:00:00"); // 设置倒计时结束日期
+        return myEndTime; // 返回结束时间
+      }
+
+      // 函数计算并更新倒计时
+      function countDown() {
+        var mydate = new Date(); // 当前日期和时间
+        var year = "2025"; // 倒计时目标年份
+        var EndTime = getEndTime(year); // 获取目标年份的结束时间
+        var NowTime = new Date(); // 再次获取当前日期和时间
+        if (EndTime.getTime() - NowTime.getTime() < 0) {
+          // 检查目标日期是否已过
+          year = mydate.getFullYear() + 1; // 年份加1
+          EndTime = getEndTime(year); // 根据下一个年份更新结束时间
+        }
+        var t = EndTime.getTime() - NowTime.getTime(); // 计算时间差
+
+        // 计算剩余的天、小时、分钟和秒
+        var d = Math.floor(t / 1000 / 60 / 60 / 24); // 剩余天数
+        var h = Math.floor((t / 1000 / 60 / 60) % 24); // 剩余小时
+        var m = Math.floor((t / 1000 / 60) % 60); // 剩余分钟
+        var s = Math.floor((t / 1000) % 60); // 剩余秒数
+
+        // 更新倒计时显示的计算值
+        document.getElementById("day").innerText = d; // 更新天数显示
+        document.getElementById("hour").innerText = h; // 更新小时显示
+        document.getElementById("minute").innerText = m; // 更新分钟显示
+        document.getElementById("second").innerText = s; // 更新秒数显示
+      }
+
+      setInterval(countDown, 1000); // 每秒调用一次countDown函数
+    </script>
+  </body>
+</html>
